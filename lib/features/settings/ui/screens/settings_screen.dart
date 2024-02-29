@@ -11,7 +11,8 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        backgroundColor: Colors.blue,
+        title: const Text('Settings',style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
       body: BlocBuilder<SettingsCubit, SettingsState>(
@@ -19,11 +20,12 @@ class SettingsScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Please Input the url to lunch the webview'),
+                SizedBox(height: 20,),
+                const Text('Please Input the url to lunch the webview',style: TextStyle(color: Colors.blue,fontSize: 16),),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 TextFormField(
                   controller: context.read<SettingsCubit>().urlController,
@@ -39,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Center(
                   child: ElevatedButton(
@@ -54,13 +56,15 @@ class SettingsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text('Please select the hardware acceleration'),
+                const Text('Please select a hardware to access',style: TextStyle(color: Colors.blue,fontSize: 16),),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Hardware Acceleration'),
+                    const Text('Hardware accessing',style: TextStyle(color: Colors.blue,fontSize: 16),),
+                    SizedBox(width: 15,),
                     DropdownButton(
                         onChanged: (value) {
                           if (value == 'wifi') {

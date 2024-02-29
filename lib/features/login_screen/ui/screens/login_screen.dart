@@ -4,12 +4,22 @@ import 'package:easacc_task/features/login_screen/logic/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Login',style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.blue,
+        centerTitle: true,
+      ),
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
@@ -28,7 +38,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 const Text(
                   'Login using your social accounts',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  style: TextStyle(fontSize: 18, color: Colors.blue),
                 ),
                 const SizedBox(
                   height: 20,
@@ -37,7 +47,8 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () async {
                     await context.read<LoginCubit>().signInWithGoogle();
                   },
-                  child: const Text('Login in with Google'),
+                  child: Text('Login in with Google',style: TextStyle(color: Colors.blue),),
+
                 ),
                 const SizedBox(
                   height: 20,
@@ -45,9 +56,9 @@ class LoginScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const WebViewScreen()));
+                        builder: (context) => const SettingsScreen()));
                   },
-                  child: const Text('Login in with Facebook'),
+                  child: Text('Login in with Facebook',style: TextStyle(color: Colors.blue),),
                 ),
               ],
             ),
